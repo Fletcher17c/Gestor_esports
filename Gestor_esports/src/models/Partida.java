@@ -10,4 +10,5 @@ public class Partida {
     Equipo equipo1;
     Equipo equipo2;
     Arbitro arbitro;
+
 }

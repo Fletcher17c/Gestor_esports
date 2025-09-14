@@ -12,9 +12,10 @@ public class Arbitro {
 
     public void setIdArbitro() {
         Random rand = new Random();
-        int idArbitro = rand.nextInt(0, 300);
-        if(ids.add(idArbitro) == true){
-            this.idArbitro = idArbitro;
-        }
+        int nuevo_id;
+        do {
+            nuevo_id = rand.nextInt(0, 300);
+        }while(!ids.add(nuevo_id));
+        this.idArbitro = nuevo_id;
     }
 }
