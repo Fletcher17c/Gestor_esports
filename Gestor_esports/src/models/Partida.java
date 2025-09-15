@@ -11,4 +11,7 @@ public class Partida {
     Equipo equipo2;
     Arbitro arbitro;
 
+    public void setArbitro(Arbitro arbitro) {
+        this.arbitro = arbitro;
+    }
 }

@@ -11,6 +11,7 @@ public class Jugador {
     private String nombre;
     private String user_name;
     private int ranking;
+    private Equipo equipo;
 
     public Jugador( String nombre, String user_name) throws InvalidAttributeValueException {
         setIdJugador();
@@ -34,7 +35,11 @@ public class Jugador {
 
     public void setNombre(String nombre)
     throws InvalidAttributeValueException {
+        if (nombre == null || nombre.isEmpty()){
+            throw new InvalidAttributeValueException();
+        }
         nombre  = nombre.strip();
+
         for(char caracter: nombre.toCharArray()){
             if (Character.isDigit(caracter)){
                 throw new InvalidAttributeValueException();
@@ -50,7 +55,7 @@ public class Jugador {
     public void setUser_name(String user_name)
         throws InvalidAttributeValueException{
         user_name = user_name.strip();
-        if (user_name.toCharArray().length >15 || user_name.contains(" ")){
+        if (user_name.length() >15 || user_name.contains(" ")){
             throw new InvalidAttributeValueException();
         }
         this.user_name = user_name;
@@ -61,11 +66,20 @@ public class Jugador {
     }
 
     //setter de ranking, se le cambia el nombre para tener mas claridad
+    //aumentara el ranking por cada partida ganada
     public void incrementRanking() {
         this.ranking++;
     }
 
     public int getRanking() {
         return ranking;
+    }
+
+    public Equipo getEquipo() {
+        return equipo;
+    }
+
+    public void setEquipo(Equipo equipo) {
+        this.equipo = equipo;
     }
 }
