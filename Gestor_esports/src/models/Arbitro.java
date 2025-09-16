@@ -7,7 +7,7 @@ import java.util.Set;
 public class Arbitro {
     private int idArbitro;
     protected static Set<Integer> ids = new HashSet<>();
-    protected Set<Partida> partidas = new HashSet<>();
+    protected Set<Partida> partidasArbitradas = new HashSet<>();
     private String nombre;
     private int experiencia;
 
@@ -20,6 +20,13 @@ public class Arbitro {
     public int getIdArbitro() {
         return idArbitro;
     }
+    public String getNombre() {
+        return nombre;
+    }
+    public int getExperiencia() {
+        return experiencia;
+    }
+
 
     public void setIdArbitro() {
         Random rand = new Random();
@@ -28,10 +35,6 @@ public class Arbitro {
             nuevo_id = rand.nextInt(0, 300);
         }while(!ids.add(nuevo_id));
         this.idArbitro = nuevo_id;
-    }
-
-    public String getNombre() {
-        return nombre;
     }
 
     public void setNombre(String nombre)
@@ -49,9 +52,6 @@ public class Arbitro {
         this.nombre = nombre;
     }
 
-    public int getExperiencia() {
-        return experiencia;
-    }
 
     //la experiencia se va a ir aumentando por cada partido arbitrado
     //similar al setter de ranking de los jugadores
@@ -60,9 +60,10 @@ public class Arbitro {
         this.experiencia++;
     }
 
-    public void arbitrar_partida(Partida partida)
-            throws InvalidAttributeValueException {
-        if(partida == null || !this.partidas.add(partida)){
+    public void arbitrar_partida(int idPartida) throws InvalidAttributeValueException {
+            Partida partida = Partida.buscarPartida(idPartida);
+
+        if(partida == null || !this.partidasArbitradas.add(partida)){
             throw new InvalidAttributeValueException();
         }
         partida.setArbitro(this);
